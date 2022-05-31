@@ -10,7 +10,7 @@ data class Declaration (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0,
 
-    @Column(name = "Employee_id", nullable = false)
+    @Column(name = "employee_id", nullable = false)
     val employee_id: Int,
 
     @Column(name = "name", length = 255)

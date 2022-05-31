@@ -12,4 +12,5 @@ class ScheduleService(private val scheduleRepository: ScheduleRepository ) {
 
     fun getSchedulesByEmployee(employee_id: Int) = scheduleRepository.getScheduleByEmployeeId(employee_id)
 
+    fun deleteById(id: Int) = scheduleRepository.deleteById(id)
 }

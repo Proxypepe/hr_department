@@ -22,4 +22,8 @@ class ScheduleController(private val scheduleService: ScheduleService) {
     @GetMapping("/employee/{id}")
     fun getSchedulesByEmployee(@PathVariable id: Int) = scheduleService.getSchedulesByEmployee(id)
 
+
+    @DeleteMapping("/delete/{id}")
+    fun deleteScheduleById(@PathVariable id: Int) = scheduleService.deleteById(id)
+
 }

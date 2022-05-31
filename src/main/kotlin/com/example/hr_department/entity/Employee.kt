@@ -1,17 +1,23 @@
 package com.example.hr_department.entity
 
+import org.hibernate.annotations.OnDelete
+import org.hibernate.annotations.OnDeleteAction
 import javax.persistence.*
 
 @Table(name = "employee")
 @Entity
-data class Employee (
+data class Employee(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0,
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Employee_id")
+    @OneToMany(orphanRemoval = true, mappedBy = "employee_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     val resignations: List<Declaration> = emptyList(),
+
+    @OneToMany(orphanRemoval = true, mappedBy = "employee_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    val schedules: List<Schedule> = emptyList(),
 
     @Column(name = "first_name", nullable = false, length = 45)
     val firstName: String,

@@ -9,7 +9,7 @@ data class Schedule(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0,
-    @Column(name = "Employee_id", nullable = false)
+    @Column(name = "employee_id", nullable = false)
     val employee_id: Int,
 
     @Column(name = "category", nullable = false, length = 45)

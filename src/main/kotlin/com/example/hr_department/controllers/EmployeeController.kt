@@ -5,6 +5,7 @@ import com.example.hr_department.model.AuthDto
 import com.example.hr_department.model.EmployeeBody
 import com.example.hr_department.services.EmployeeService
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 
 @RestController
@@ -15,8 +16,7 @@ class EmployeeController(private val employeeService: EmployeeService) {
     fun auth(@RequestBody authParams: AuthDto): Employee? =
         employeeService.getEmployeeByLoginAndPassword(authParams.login, authParams.password)
 
-
-    @PostMapping("/register")
+    @PostMapping("/add")
     fun createEmployee(@RequestBody employee: EmployeeBody) = employeeService.save(
         employee = Employee(
             firstName = employee.firstName,
@@ -33,11 +33,32 @@ class EmployeeController(private val employeeService: EmployeeService) {
         )
     )
 
-
     @GetMapping("/all")
-    fun getAllEmployees(): List<Employee> {
-        return employeeService.fetchAll()
-    }
+    fun getAllEmployees(): List<Employee> = employeeService.fetchAll()
 
-    // TODO: Add put method
+    @GetMapping("/employeeInfo/{id}")
+    fun getEmployeeInfo(@PathVariable id: Int) = employeeService.fetchById(id)
+
+    @PutMapping("/updateInfo/{id}")
+    fun updateEmployeeInfo(@RequestBody employee: EmployeeBody, @PathVariable id: Int): Optional<Employee>? =
+        employeeService.fetchById(id).map {
+            employeeService.save(
+                it.copy(
+                    firstName = employee.firstName,
+                    secondName = employee.secondName,
+                    email = employee.email,
+                    age = employee.age,
+                    jobName = employee.jobName,
+                    gender = employee.gender,
+                    department = employee.department,
+                    salary = employee.salary,
+                    role = employee.role,
+                    password = employee.password,
+                    login = employee.login,
+                ),
+            )
+        }
+
+    @DeleteMapping("/delete/{id}")
+    fun deleteEmployee(@PathVariable id: Int) = employeeService.deleteById(id)
 }
