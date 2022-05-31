@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query
 interface DeclarationRepository : JpaRepository<Declaration, Int> {
 
     @Query("SELECT d FROM Declaration d WHERE d.employee_id = ?1")
-    fun getDeclarationByEmployee_id(employee_id: Int): Declaration?
+    fun getDeclarationsByEmployeeId(employee_id: Int): List<Declaration>?
 
 
 }

@@ -10,6 +10,6 @@ class DeclarationService(private val declarationRepository: DeclarationRepositor
 
     fun fetchAll(): List<Declaration> = declarationRepository.findAll()
 
-    fun getDeclarationByEmployee_id(employee_id: Int) = declarationRepository.getDeclarationByEmployee_id(employee_id)
+    fun getDeclarationsByEmployeeId(employee_id: Int) = declarationRepository.getDeclarationsByEmployeeId(employee_id)
 
 }

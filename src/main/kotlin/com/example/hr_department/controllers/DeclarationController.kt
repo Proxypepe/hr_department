@@ -25,5 +25,7 @@ class DeclarationController(private val declarationService: DeclarationService) 
     fun getAllDeclarations() = declarationService.fetchAll()
 
     @GetMapping("/employee/{id}")
-    fun getDeclarationsByEmployeeId(@PathVariable id: Int) = declarationService.getDeclarationByEmployee_id(id)
+    fun getDeclarationsByEmployeeId(@PathVariable id: Int) = declarationService.getDeclarationsByEmployeeId(id)
+
+    // TODO: Add patch method
 }
