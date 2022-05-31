@@ -1,0 +1,18 @@
+version: '3.7'
+volumes:
+  hr_department:
+
+services:
+
+  db:
+    image: mysql
+    restart: always
+    container_name: db_mysql
+    ports:
+      - 32700:3306
+    volumes:
+      - hr_department:/var/lib/mysql
+    environment:
+      MYSQL_PASSWORD: "root_pass"
+      MYSQL_ROOT_PASSWORD: "root_pass"
+      MYSQL_DATABASE: department
